@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .register-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .register-container h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="password"],
+        .form-group input[type="email"] {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group input[type="radio"] {
+            margin-right: 0.5rem;
+        }
+        .form-group .role {
+            display: flex;
+            justify-content: space-between;
+        }
+        .form-group .role label {
+            flex: 1;
+            text-align: center;
+        }
+        .form-group .role input {
+            margin: 0;
+        }
+        .register-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: #6a11cb;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .register-btn:hover {
+            background: #2575fc;
+        }
+    </style>
+</head>
+<body>
+<div class="register-container">
+    <h2>Register</h2>
+    <form th:action="@{/register/checkandsave}" method="post">
+        <div class="form-group">
+            <span th:text="${existingError}"></span>
+            <label for="username">User name</label>
+            <input type="text" id="username" name="username" required th:name="username">
+            <span th:text="${errorForUserName}"></span>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required th:name="email">
+        </div>
+        <div class="form-group">
+            <label for="phonenumber">Phone Number</label>
+            <input type="text" id="phonenumber" name="phonenumber" required th:name="phonenumber">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="matkhau" required th:name="matkhau">
+            <span th:text="${errorForPassword}"></span>
+        </div>
+        <div class="form-group">
+            <label for="password2">Password again</label>
+            <input type="password" id="password2" name="matkhau2" required th:name="matkhau2">
+            <span th:text="${errorForPassword2}"></span>
+            <span th:text="${NotMatchingError}"></span>
+        </div>
+        <div class="form-group role">
+            <select th:name="role">
+                <option value="ROLE_USER">User</option>
+                <option value="ROLE_ADMIN">Admin</option>
+            </select>
+        </div>
+        <button type="submit" class="register-btn">Register</button>
+    </form>
+</div>
+</body>
+</html>
